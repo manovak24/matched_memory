@@ -1,12 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectVisibleIDs, flipCard } from '../../boardSlice.js';
+import { selectVisibleIDs, flipCard, selectMatchedIDs } from '../../boardSlice.js';
 
 
 let cardLogo = "https://static-assets.codecademy.com/Courses/Learn-Redux/matching-game/codecademy_logo.png";
 
 export const Card = ({ id, contents }) => {
   const visibleIDs = useSelector(selectVisibleIDs);
+  const matchedIDs = useSelector(selectMatchedIDs);
   const dispatch = useDispatch();
   
   
@@ -25,14 +26,14 @@ export const Card = ({ id, contents }) => {
 
   // 1st if statement
   // implement card id array membership check
-  if (visibleIDs.includes(id)) {
+  if (visibleIDs.includes(id) || matchedIDs.includes(id)) {
     cardText = contents;
     click = () => {};
   }
 
   // 2nd if statement
   // implement card id array membership check
-  if (false) {
+  if (matchedIDs.includes(id)) {
     cardStyle = 'matched';
   }
 
